@@ -44,3 +44,6 @@ ex)  10 3 5 1 1 5 2 2 9 2 --> 1 1 2 2 2 3 5 5 9 10
 ![Result](https://github.com/baesh/NumberOrdering_Transformer/assets/18441461/8ae46cac-604b-4b66-94da-ea0334a6b549)
 
 -Accuracy(rate of correct generation) has reached to around 80 percent.
+
+#etc
+-unzip files in 'train_set' and 'test_set' for usage
