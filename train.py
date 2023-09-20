@@ -20,8 +20,8 @@ in_length = encoder_in_ten_sample.shape[0]
 encoder_multihead_times = 4
 decoder_multihead_times1 = 4
 decoder_multihead_times2 = 4
-encoder_repeat_times = 2
-decoder_repeat_times = 2
+encoder_repeat = 2
+decoder_repeat = 2
 learning_rate = 0.001
 decoder = layer.decoder(in_size, in_length, encoder_multihead_times, decoder_multihead_times1, decoder_multihead_times2).to(device)
 optim = torch.optim.Adam(decoder.parameters(), lr=learning_rate)
@@ -59,7 +59,7 @@ for i in range(int(epoch/minibatch)):
         # decoder_in_ten = layer.positional_encoding(decoder_in_ten, device)
 
         for show_range in range(in_length):
-            result = decoder(encoder_in_ten, decoder_in_ten, encoder_repeat_times, decoder_repeat_times, show_range, device)
+            result = decoder(encoder_in_ten, decoder_in_ten, encoder_repeat, decoder_repeat, show_range, device)
             bce = nn.MSELoss()
             loss = bce(result ,decoder_in_ten[show_range])
             loss_sum = loss_sum + loss
@@ -87,7 +87,7 @@ for i in range(int(epoch/minibatch)):
             in_tensor = torch.zeros(10, 10, dtype=torch.float64).to(device)
             show_range = 0
             for show_range in range(10):
-                test_result = decoder(unsorted, in_tensor, encoder_repeat_times, decoder_repeat_times, show_range, device).detach()
+                test_result = decoder(unsorted, in_tensor, encoder_repeat, decoder_repeat, show_range, device).detach()
                 sub_ten = torch.zeros(10, dtype=torch.float64).to(device)
                 sub_ten[torch.argmax(test_result)] = 1.0
                 in_tensor[show_range] = sub_ten
