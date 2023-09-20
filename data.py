@@ -43,7 +43,7 @@ for data_no in range(data_number):
         file1.write(line)
     file1.close()
 
-    file2 = open('test_set/sorted/'+str(data_no)+'_sorted.txt','w')
+    #file2 = open('test_set/sorted/'+str(data_no)+'_sorted.txt','w')
     for no in sorted:
         line = ''
         for i in no:
